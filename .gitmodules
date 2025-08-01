@@ -1,0 +1,3 @@
+[submodule "yokatlas-py"]
+	path = yokatlas-py
+	url = https://github.com/emirks/yokatlas-py.git
