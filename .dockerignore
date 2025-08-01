@@ -1,0 +1,44 @@
+# Virtual environments
+venv/
+env/
+.env
+
+# Git
+.git/
+.gitignore
+.gitattributes
+.gitmodules
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation and examples
+README.md
+*.md
+*.png
+*.jpg
+*.jpeg
+
+# Test files
+test/
+tests/
+*_test.py
+
+# Other unnecessary files for deployment
+hello.py
+yokatlas_pdf_generator.py 

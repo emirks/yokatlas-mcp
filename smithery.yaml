@@ -1,0 +1,22 @@
+runtime: "container"
+build:
+  dockerfile: "Dockerfile"           # Path to your Dockerfile
+  dockerBuildPath: "."               # Docker build context
+startCommand:
+  type: "http"
+  configSchema:                      # JSON Schema for configuration
+    type: "object"
+    properties:
+      apiKey:
+        type: "string"
+        description: "Optional API key for enhanced features (not currently required)"
+      maxResults:
+        type: "integer"
+        description: "Maximum number of results to return per search"
+        default: 50
+        minimum: 1
+        maximum: 500
+    required: []
+  exampleConfig:
+    apiKey: "optional-api-key"
+    maxResults: 50 

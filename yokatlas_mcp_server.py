@@ -467,11 +467,14 @@ def search_associate_degree_programs(
 def main():
     """Main entry point for the YOKATLAS MCP server."""
     import sys
+    import os
 
     # Default to Streamable HTTP transport for web-based access (recommended)
     transport = "http"  # Changed from "sse" to "http"
-    host = "127.0.0.1"
-    port = 8000
+    host = "0.0.0.0"  # Changed to bind to all interfaces for Docker
+    port = int(
+        os.environ.get("PORT", 8000)
+    )  # Use PORT env var for Smithery compatibility
 
     # Check if running in stdio mode for MCP clients
     if "--stdio" in sys.argv:
