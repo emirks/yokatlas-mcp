@@ -469,34 +469,26 @@ def main():
     import sys
     import os
 
-    # Default to Streamable HTTP transport for web-based access (recommended)
-    transport = "http"  # Changed from "sse" to "http"
-    host = "0.0.0.0"  # Changed to bind to all interfaces for Docker
-    port = int(
-        os.environ.get("PORT", 8000)
-    )  # Use PORT env var for Smithery compatibility
+    # Get port from environment variable (required by Smithery)
+    port = int(os.environ.get("PORT", 8000))
+    host = "0.0.0.0"
 
     # Check if running in stdio mode for MCP clients
     if "--stdio" in sys.argv:
-        transport = "stdio"
         print("Starting YOKATLAS API MCP Server in stdio mode for MCP clients...")
-        mcp.run(transport=transport)
-    elif "--sse" in sys.argv:
-        # Backward compatibility: still support SSE if explicitly requested
-        transport = "sse"
-        print("Starting YOKATLAS API MCP Server with SSE transport (deprecated)...")
-        print(f"Server will be available at http://{host}:{port}")
-        print(
-            "Note: SSE transport is deprecated. Consider using Streamable HTTP instead."
-        )
-        mcp.run(transport=transport, host=host, port=port)
+        mcp.run(transport="stdio")
     else:
-        # Run with Streamable HTTP transport (recommended)
-        print("Starting YOKATLAS API MCP Server with Streamable HTTP transport...")
-        print(f"Server will be available at http://{host}:{port}/mcp")
-        print("Use --stdio flag to run in stdio mode for MCP clients")
-        print("Use --sse flag to use deprecated SSE transport")
-        mcp.run(transport=transport, host=host, port=port)
+        # Use FastMCP's HTTP server (compatible with Smithery AI)
+        print("Starting YOKATLAS API MCP Server with HTTP transport...")
+        print(f"Server will be available at http://{host}:{port}")
+        print("Smithery AI compatible endpoint: /mcp")
+
+        try:
+            # Use FastMCP's run_http method for Smithery compatibility
+            mcp.run_http(host=host, port=port)
+        except Exception as e:
+            print(f"Error starting server: {e}")
+            sys.exit(1)
 
 
 if __name__ == "__main__":
