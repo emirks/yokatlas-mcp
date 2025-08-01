@@ -1,5 +1,5 @@
-fastmcp
+fastmcp>=2.10.5
 git+https://github.com/emirks/yokatlas-py.git
-beautifulsoup4
-setuptools
-reportlab
+beautifulsoup4>=4.12.3
+setuptools>=80.9.0
+pydantic>=2.0.0
