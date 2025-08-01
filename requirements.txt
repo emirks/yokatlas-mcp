@@ -1,5 +1,5 @@
 fastmcp
-yokatlas-py
+-e ./yokatlas-py
 beautifulsoup4
 setuptools
 reportlab
