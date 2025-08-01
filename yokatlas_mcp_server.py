@@ -468,8 +468,8 @@ def main():
     """Main entry point for the YOKATLAS MCP server."""
     import sys
 
-    # Default to SSE transport for web-based access
-    transport = "sse"
+    # Default to Streamable HTTP transport for web-based access (recommended)
+    transport = "http"  # Changed from "sse" to "http"
     host = "127.0.0.1"
     port = 8000
 
@@ -478,11 +478,21 @@ def main():
         transport = "stdio"
         print("Starting YOKATLAS API MCP Server in stdio mode for MCP clients...")
         mcp.run(transport=transport)
-    else:
-        # Run with SSE transport for web-based access
-        print("Starting YOKATLAS API MCP Server with SSE transport...")
+    elif "--sse" in sys.argv:
+        # Backward compatibility: still support SSE if explicitly requested
+        transport = "sse"
+        print("Starting YOKATLAS API MCP Server with SSE transport (deprecated)...")
         print(f"Server will be available at http://{host}:{port}")
+        print(
+            "Note: SSE transport is deprecated. Consider using Streamable HTTP instead."
+        )
+        mcp.run(transport=transport, host=host, port=port)
+    else:
+        # Run with Streamable HTTP transport (recommended)
+        print("Starting YOKATLAS API MCP Server with Streamable HTTP transport...")
+        print(f"Server will be available at http://{host}:{port}/mcp")
         print("Use --stdio flag to run in stdio mode for MCP clients")
+        print("Use --sse flag to use deprecated SSE transport")
         mcp.run(transport=transport, host=host, port=port)
 
 
