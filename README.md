@@ -247,6 +247,35 @@ Bu FastMCP sunucusu aşağıdaki araçları sunar:
 # → Önce arama ile YÖP kodunu bul, sonra atlas detaylarını çek
 ```
 
+## 👨‍💻 Geliştirme ve Manuel Kurulum
+
+Eğer projeyi yerel olarak geliştirmek veya manuel olarak kurmak istiyorsanız:
+
+### Repository'yi Klonlama
+
+⚠️ **Önemli:** Bu proje git submodule kullanır. Submodule'ları dahil etmek için aşağıdaki komutlardan birini kullanın:
+
+**Yeni klonlama için (önerilen):**
+```bash
+git clone --recurse-submodules https://github.com/saidsurucu/yokatlas-mcp.git
+```
+
+**Eğer zaten klonladıysanız:**
+```bash
+git submodule update --init --recursive
+```
+
+### Yerel Kurulum
+```bash
+cd yokatlas-mcp
+pip install -e .
+```
+
+### Submodule Güncelleme
+Submodule'ı güncellemek için:
+```bash
+git submodule update --remote
+```
 
 ## 📜 Lisans
 
