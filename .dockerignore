@@ -9,6 +9,9 @@ env/
 .gitattributes
 .gitmodules
 
+# Git submodules (installed directly from GitHub)
+yokatlas-py/
+
 # Python cache
 __pycache__/
 *.pyc

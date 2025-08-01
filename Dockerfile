@@ -13,10 +13,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 COPY pyproject.toml .
 
-# Copy the local yokatlas-py package
-COPY yokatlas-py/ ./yokatlas-py/
-
-# Install Python dependencies
+# Install Python dependencies (including yokatlas-py from GitHub)
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the MCP server code

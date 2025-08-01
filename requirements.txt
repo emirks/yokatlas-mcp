@@ -1,5 +1,5 @@
 fastmcp
--e ./yokatlas-py
+git+https://github.com/emirks/yokatlas-py.git
 beautifulsoup4
 setuptools
 reportlab
